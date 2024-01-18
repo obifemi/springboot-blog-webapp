@@ -18,14 +18,21 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String title;
+    
     private String url;
-    @Column(nullable = false)
+
+    @Lob
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
     private String content;
+
     private String shortDescription;
+
     @CreationTimestamp
     private LocalDateTime createdOn;
+
     @UpdateTimestamp
     private LocalDateTime updatedOn;
 
