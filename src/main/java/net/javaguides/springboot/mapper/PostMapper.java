@@ -5,7 +5,7 @@ import net.javaguides.springboot.entity.Post;
 
 public class PostMapper {
     //map Post entity to PostDto
-    public PostDto mapToPostDto(Post post){
+    public static PostDto mapToPostDto(Post post){
 
         return PostDto.builder()
                 .id(post.getId())
@@ -22,7 +22,7 @@ public class PostMapper {
     //map Post PostDto  to entity
 
 
-    public Post mapToPostDto(PostDto postDto){
+    public static Post mapToPost(PostDto postDto){
         return Post.builder()
                 .id(postDto.getId())
                 .title(postDto.getTitle())
