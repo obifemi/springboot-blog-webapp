@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PostService {
     List<PostDto> findAll();
+    void createPost(PostDto postDto);
 }
