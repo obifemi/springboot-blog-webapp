@@ -1,6 +1,7 @@
 package net.javaguides.springboot.dto;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +21,15 @@ public class PostDto {
 
     private Long id;
 
+    @NotEmpty
     private String title;
 
     private String url;
 
+    @NotEmpty
     private String content;
+
+    @NotEmpty
 
     private String shortDescription;
 

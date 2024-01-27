@@ -1,9 +1,11 @@
 package net.javaguides.springboot.controller;
 
+import jakarta.validation.Valid;
 import net.javaguides.springboot.dto.PostDto;
 import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,13 +39,19 @@ public class PostController {
     }
 
     @PostMapping("/admin/posts")
-    public String createPost(@ModelAttribute PostDto postDto){
+    public String createPost(@Valid @ModelAttribute("post") PostDto postDto,
+                             BindingResult result,
+                             Model model){
+        if (result.hasErrors()) {
+            model.addAttribute("post", postDto);
+            return "admin/create_post";
+        }
         postDto.setUrl(createUrl(postDto.getTitle()));
         postService.createPost(postDto);
         return "redirect:/admin/posts";
     }
 
-    private String createUrl(String postTitle){
+    private String createUrl( String postTitle){
         String title = postTitle.trim().toLowerCase();
         String url = title.replaceAll("\\s+", "-");
         url = url.replaceAll("[^A-Za-z0-9]","-");
