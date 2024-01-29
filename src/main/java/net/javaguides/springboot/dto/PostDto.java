@@ -21,7 +21,7 @@ public class PostDto {
 
     private Long id;
 
-    @NotEmpty
+    @NotEmpty (message = "Post title should not be empty")
     private String title;
 
     private String url;
