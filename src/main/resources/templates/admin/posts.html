@@ -27,12 +27,15 @@ xmlns:th="http://www.thymeleaf.org"
 
         <tbody>
         <tr th:each="post, postStat : ${posts}">
-            <td th:text="${postStat.count}"></td>
-            <td th:text="${post.title}"></td>
-            <td th:text="${post.shortDescription}"></td>
-            <td th:text="${post.createdOn}"></td>
-            <td></td>
-
+            <td style="text-align: center" th:text="${postStat.count}"></td>
+            <td style="text-align: center" th:text="${post.title}"></td>
+            <td style="text-align: center" th:text="${post.shortDescription}"></td>
+            <td style="text-align: center" th:text="${post.createdOn}"></td>
+            <td style="text-align: center">
+                <a th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}" class="bg-green btn btn-success">Edit</a>
+                <a th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}" class="bg-green btn btn-danger">Delete</a>
+                <a th:href="@{/admin/posts/{postUrl}/view(postUrl=${post.url})}" class="bg-green btn btn-info">View</a>
+            </td>
         </tr>
         </tbody>
 
